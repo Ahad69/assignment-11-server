@@ -21,11 +21,18 @@ async function run() {
       const travelCollections = database.collection("travelservices");
       const servicesCollection = database.collection("travelPackages");
       const addBooking = database.collection("addBooking");
+      const branch = database.collection("branch");
 
 
         // get services 
       app.get('/services' , async (req , res)=>{
         const cursor =  servicesCollection.find({})
+        const result = await cursor.toArray()
+        res.send(result)
+      })
+      // get branch 
+      app.get('/branch' , async (req , res)=>{
+        const cursor =  branch.find({})
         const result = await cursor.toArray()
         res.send(result)
       })
